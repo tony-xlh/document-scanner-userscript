@@ -6,12 +6,12 @@
   left: 0;
   margin: 10px;
   border-radius: 50%;
-  background-color: #2196f3;
+  background: #2196f3;
   pointer-events: auto;
 }
 
 .dwt-fab:hover {
-  background-color: #7db1d4;
+  background: #7db1d4;
 }
 
 .dwt-fab img {
@@ -26,6 +26,7 @@
   height: calc(100% - 40px);
   border: 1px solid gray;
   border-radius: 5px;
+  background: white;
 }
 
 .dwt-header {

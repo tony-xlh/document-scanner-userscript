@@ -3,9 +3,22 @@
 <head>
     <title>Dynamic Web TWAIN Sample</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <style>
+      .editor {
+        height:200px;
+        border:1px solid black;
+      }
+
+      .editor img {
+        max-height: 100px;
+      }
+    </style>
 </head>
 <body>
   <div>Click the floating action button to reveal the scanner modal.</div>
+  Editable container:
+  <div class="editor" contenteditable="true">
+  </div>
   <script type="text/javascript">
     let modal;
     let DWObject;
@@ -55,12 +68,18 @@
         controls.className = "dwt-controls";
         const scanBtn = document.createElement("button");
         scanBtn.innerText = "Scan";
-
         scanBtn.addEventListener("click", () => {
           scan();
         });
+        
+        const copyBtn = document.createElement("button");
+        copyBtn.innerText = "Copy selected";
+        copyBtn.addEventListener("click", () => {
+          copy();
+        });
 
         controls.appendChild(scanBtn);
+        controls.appendChild(copyBtn);
         body.appendChild(viewer);
         body.appendChild(controls);
         modal.appendChild(header);
@@ -88,6 +107,13 @@
             console.log("SelectSource failed!");
           }
         );
+      }
+    }
+
+    function copy(){
+      if (DWObject) {
+        DWObject.CopyToClipboard(DWObject.CurrentImageIndexInBuffer);
+        alert("Copied");
       }
     }
 
