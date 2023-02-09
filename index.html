@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Web TWAIN Sample</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+</head>
+<body>
+  <script type="text/javascript">
+    let modal;
+    init();
+    async function init(){
+      await loadLibrary("https://unpkg.com/dwt@18.0.0/dist/dynamsoft.webtwain.min.js","text/javascript");
+      await loadStyle("style.css");
+      addButton();
+    }
+
+    function addButton(){
+      const button = document.createElement("div");
+      button.className = "dwt-fab";
+      const a = document.createElement("a")
+      a.href = "javascript:void(0)";
+      const icon = document.createElement("img")
+      icon.src = "scanner-scan.svg"
+      a.appendChild(icon);
+      button.appendChild(a);
+      document.body.appendChild(button);
+      button.addEventListener("click", () => {
+        showModal();
+      });
+    }
+
+    function showModal(){
+      if (!modal) {
+        modal = document.createElement("div");
+        document.body.appendChild(modal);
+      }
+    }
+
+    function loadLibrary(src,type){
+      return new Promise(function (resolve, reject) {
+        let scriptEle = document.createElement("script");
+        scriptEle.setAttribute("type", type);
+        scriptEle.setAttribute("src", src);
+        document.body.appendChild(scriptEle);
+        scriptEle.addEventListener("load", () => {
+          console.log(src+" loaded")
+          resolve(true);
+        });
+        scriptEle.addEventListener("error", (ev) => {
+          console.log("Error on loading "+src, ev);
+          reject(ev);
+        });
+      });
+    }
+
+    function loadStyle(url) {
+      return new Promise(function (resolve, reject) {
+        let linkEle = document.createElement('link')
+        linkEle.type = 'text/css'
+        linkEle.rel = 'stylesheet'
+        linkEle.href = url
+        let head = document.getElementsByTagName('head')[0]
+        head.appendChild(linkEle)
+        linkEle.addEventListener("load", () => {
+          console.log(url+" loaded")
+          resolve(true);
+        });
+        linkEle.addEventListener("error", (ev) => {
+          console.log("Error on loading "+url, ev);
+          reject(ev);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
