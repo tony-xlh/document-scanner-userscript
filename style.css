@@ -17,3 +17,27 @@
 .dwt-fab img {
   padding: 10px;
 }
+
+.dwt-modal {
+  position:absolute;
+  left: 20px;
+  top: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.dwt-header {
+  height: 25px;
+}
+
+.dwt-close-btn {
+  float: right;
+  margin-right: 5px;
+}
+
+.dwt-controls {
+  text-align: center;
+  height: calc(100% - 25px);
+}

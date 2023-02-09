@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 </head>
 <body>
+  <div>Click the floating action button to reveal the scanner modal.</div>
   <script type="text/javascript">
     let modal;
     init();
@@ -32,8 +33,35 @@
     function showModal(){
       if (!modal) {
         modal = document.createElement("div");
+        modal.className = "dwt-modal";
         document.body.appendChild(modal);
+        const header = document.createElement("div");
+        const closeBtn = document.createElement("div");
+        closeBtn.className = "dwt-close-btn";
+        closeBtn.innerText = "x";
+        header.appendChild(closeBtn);
+        header.className = "dwt-header";
+        closeBtn.addEventListener("click", () => {
+          hideModal();
+        });
+        const controls = document.createElement("div");
+        controls.className = "dwt-controls";
+        const viewer = document.createElement("div");
+        viewer.className = "dwt-viewer";
+        const scanBtn = document.createElement("button");
+        scanBtn.innerText = "Scan";
+        controls.appendChild(viewer);
+        controls.appendChild(scanBtn);
+        modal.appendChild(header);
+        modal.appendChild(controls);
       }
+      document.querySelector(".dwt-fab").style.display = "none";
+      modal.style.display = "";
+    }
+
+    function hideModal(){
+      modal.style.display = "none";
+      document.querySelector(".dwt-fab").style.display = "";
     }
 
     function loadLibrary(src,type){
