@@ -55,6 +55,11 @@
         controls.className = "dwt-controls";
         const scanBtn = document.createElement("button");
         scanBtn.innerText = "Scan";
+
+        scanBtn.addEventListener("click", () => {
+          scan();
+        });
+
         controls.appendChild(scanBtn);
         body.appendChild(viewer);
         body.appendChild(controls);
@@ -71,6 +76,19 @@
     function hideModal(){
       modal.style.display = "none";
       document.querySelector(".dwt-fab").style.display = "";
+    }
+
+    function scan(){
+      if (DWObject) {
+        DWObject.SelectSource(function () {
+          DWObject.OpenSource();
+          DWObject.AcquireImage();
+        },
+          function () {
+            console.log("SelectSource failed!");
+          }
+        );
+      }
     }
 
     function initDWT(){
