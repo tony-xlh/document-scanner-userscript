@@ -132,12 +132,19 @@ function showModal(){
     copyBtn.addEventListener("click", () => {
       copy();
     });
-    
+
+    const saveBtn = document.createElement("button");
+    saveBtn.innerText = "Save";
+    saveBtn.addEventListener("click", () => {
+      save();
+    });
+
     const status = document.createElement("div");
     status.className="dwt-status";
 
     controls.appendChild(scanBtn);
     controls.appendChild(copyBtn);
+    controls.appendChild(saveBtn);
     controls.appendChild(status);
 
     body.appendChild(viewer);
@@ -178,6 +185,12 @@ function copy(){
   if (DWObject) {
     DWObject.CopyToClipboard(DWObject.CurrentImageIndexInBuffer);
     alert("Copied");
+  }
+}
+
+function save(){
+  if (DWObject) {
+    DWObject.SaveAllAsPDF("Scanned");
   }
 }
 
