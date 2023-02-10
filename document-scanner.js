@@ -4,7 +4,7 @@
 // @version    0.1
 // @description  Add a document scanning button to your web pages.
 // @author     Lihang Xu
-// @match *
+// @include *
 // @icon     https://www.google.com/s2/favicons?sz=64&domain=tampermonkey.net
 // @grant GM_addStyle
 // ==/UserScript==
@@ -14,7 +14,7 @@ let DWObject;
 
 const CSS = /* css */ `
 .dwt-fab {
-  position:absolute;
+  position:fixed;
   bottom:0;
   width: 50px;
   height: 50px;
@@ -23,6 +23,7 @@ const CSS = /* css */ `
   border-radius: 50%;
   background: #2196f3;
   pointer-events: auto;
+  z-index: 9999;
 }
 
 .dwt-fab:hover {
@@ -34,7 +35,7 @@ const CSS = /* css */ `
 }
 
 .dwt-modal {
-  position:absolute;
+  position:fixed;
   left: 20px;
   top: 20px;
   width: calc(100% - 40px);
@@ -42,6 +43,7 @@ const CSS = /* css */ `
   border: 1px solid gray;
   border-radius: 5px;
   background: white;
+  z-index: 9999;
 }
 
 .dwt-header {
