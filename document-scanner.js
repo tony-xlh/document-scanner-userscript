@@ -92,7 +92,7 @@ function addButton(){
   const a = document.createElement("a")
   a.href = "javascript:void(0)";
   const icon = document.createElement("img")
-  icon.src = "scanner-scan.svg"
+  icon.src = "https://tony-xlh.github.io/document-scanner-userscript/scanner-scan.svg"
   a.appendChild(icon);
   button.appendChild(a);
   document.body.appendChild(button);
