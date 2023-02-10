@@ -4,9 +4,9 @@
 // @version    0.1
 // @description  Add a document scanning button to your web pages.
 // @author     Lihang Xu
-// @match    https://www.bing.com
+// @match *
 // @icon     https://www.google.com/s2/favicons?sz=64&domain=tampermonkey.net
-// @grant    none
+// @grant GM_addStyle
 // ==/UserScript==
 
 let modal;
