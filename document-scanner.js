@@ -183,9 +183,32 @@ function scan(){
 
 function copy(){
   if (DWObject) {
-    DWObject.CopyToClipboard(DWObject.CurrentImageIndexInBuffer);
-    alert("Copied");
+    if (Dynamsoft.Lib.env.bMobile) {
+      DWObject.ConvertToBlob(
+        [DWObject.CurrentImageIndexInBuffer],
+        Dynamsoft.DWT.EnumDWT_ImageType.IT_PNG,
+        function(result) {
+          CopyBlobToClipboard(result);
+        },
+        function(errorCode,errorString) {
+          console.log("convert failed");
+          console.log(errorString);
+          alert("Failed");
+        });
+    }else{
+      DWObject.CopyToClipboard(DWObject.CurrentImageIndexInBuffer);
+      alert("Copied");
+    }
   }
+}
+
+function CopyBlobToClipboard(blob) {
+  var data = [new ClipboardItem({ "image/png": blob})];
+  navigator.clipboard.write(data).then(function() {
+    alert("Copied");
+  }, function() {
+    alert("Failed");
+  });
 }
 
 function save(){
