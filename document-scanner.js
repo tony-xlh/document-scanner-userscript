@@ -132,9 +132,14 @@ function showModal(){
     copyBtn.addEventListener("click", () => {
       copy();
     });
+    
+    const status = document.createElement("div");
+    status.className="dwt-status";
 
     controls.appendChild(scanBtn);
     controls.appendChild(copyBtn);
+    controls.appendChild(status);
+
     body.appendChild(viewer);
     body.appendChild(controls);
     modal.appendChild(header);
@@ -178,14 +183,17 @@ function copy(){
 
 function initDWT(){
   console.log("initDWT");
+  const status = document.querySelector(".dwt-status");
   Dynamsoft.DWT.Containers = [{ ContainerId: 'dwtcontrolContainer',Width: 270, Height: 350 }];
   Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', function () {
     console.log("ready");
+    status.innerText = "";
     DWObject = Dynamsoft.DWT.GetWebTwain('dwtcontrolContainer');
     DWObject.Viewer.width = "100%";
     DWObject.Viewer.height = "100%";
     DWObject.SetViewMode(2,2);
   });
+  status.innerText = "Loading...";
   Dynamsoft.DWT.Load();
 }
 
