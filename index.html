@@ -99,14 +99,18 @@
 
     function scan(){
       if (DWObject) {
-        DWObject.SelectSource(function () {
-          DWObject.OpenSource();
-          DWObject.AcquireImage();
-        },
-          function () {
-            console.log("SelectSource failed!");
-          }
-        );
+        if (Dynamsoft.Lib.env.bMobile) {
+          DWObject.Addon.Camera.scanDocument();
+        }else {
+          DWObject.SelectSource(function () {
+            DWObject.OpenSource();
+            DWObject.AcquireImage();
+          },
+            function () {
+              console.log("SelectSource failed!");
+            }
+          );
+        }
       }
     }
 
