@@ -8,3 +8,4 @@ Check out the video to see how it works:
 
 [Dynamic Web TWAIN](https://www.dynamsoft.com/web-twain/overview/) is used to get documents from scanners or cameras.
 
+[Blog on how the userscript is made](https://github.com/tony-xlh/document-scanner-userscript/blob/main/blog.md)
